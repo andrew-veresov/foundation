@@ -80,7 +80,7 @@ $base-line-height: 1.5 !default;
 // We use this to add box-sizing across browser prefixes
 @mixin box-sizing($type:border-box) {
   -webkit-box-sizing: $type; // Android < 2.3, iOS < 4
-     -moz-box-sizing: $type; // Firefox < 29
+     -moz-box-sizing: $type;
           box-sizing: $type; // Chrome, IE 8+, Opera, Safari 5.1
 }
 
@@ -194,7 +194,7 @@ $base-line-height: 1.5 !default;
 // $horizontal: Default: 0
 // $vertical: Default: 0
 @mixin translate2d($horizontal:0, $vertical:0) {
-  transform: translate($horizontal,$vertical)
+  transform: translate($horizontal, $vertical)
 }
 
 // @mixins
@@ -407,10 +407,13 @@ $cursor-text-value: text !default;
     html, body { height: 100%; }
 
     // Set box-sizing globally to handle padding and border widths
+    html {
+      box-sizing: border-box;
+    }
     *,
     *:before,
     *:after {
-      @include box-sizing(border-box);
+      @include box-sizing(inherit);
     }
 
     html,
@@ -452,8 +455,7 @@ $cursor-text-value: text !default;
 
     // Hide visually and from screen readers
     .hide {
-      display: none !important;
-      visibility: hidden;
+      display: none;
     }
 
     // Hide visually and from screen readers, but maintain layout
