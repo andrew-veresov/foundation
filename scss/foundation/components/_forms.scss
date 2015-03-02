@@ -18,7 +18,7 @@ $form-label-pointer: pointer !default;
 $form-label-font-size: rem-calc(14) !default;
 $form-label-font-weight: $font-weight-normal !default;
 $form-label-line-height: 1.5 !default;
-$form-label-font-color: scale-color($black, $lightness: 30%) !default;
+$form-label-font-color: scale-color($black, $lightness: 50%) !default;
 $form-label-small-transform: capitalize !default;
 $form-label-bottom-margin: 0 !default;
 $input-font-family: inherit !default;
@@ -33,7 +33,7 @@ $input-border-width: 1px !default;
 $input-border-radius: $global-radius !default;
 $input-disabled-bg: $gainsboro !default;
 $input-disabled-cursor: $cursor-default-value !default;
-$input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !default;
+$input-box-shadow: none !default;
 $input-include-glowing-effect: true !default;
 
 // We use these to style the fieldset border and spacing.
@@ -110,15 +110,15 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
 //
 // We use this mixin to give all basic form elements their style
 @mixin form-element {
-  background-color: $input-bg-color;
+  //background-color: $input-bg-color;
   font-family: $input-font-family;
   border: {
     style: $input-border-style;
     width: $input-border-width;
     color: $input-border-color;
   }
-  box-shadow: $input-box-shadow;
-  color: $input-font-color;
+  //box-shadow: $input-box-shadow;
+  //color: $input-font-color;
   display: block;
   font-size: $input-font-size;
   margin: 0 0 $form-spacing 0;
@@ -167,6 +167,7 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
     font-weight: $form-label-font-weight;
     line-height: $form-label-line-height;
     margin-bottom: $form-label-bottom-margin;
+    text-transform: uppercase;
   }
 
   // Alignment options
@@ -390,6 +391,12 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
         text-transform: $form-label-small-transform;
         color: scale-color($form-label-font-color, $lightness: 15%);
       }
+
+      input[type=radio] + span,
+      input[type=checkbox] + span {
+          margin-left: 0.5em;
+          padding-bottom: 1em;
+      }
     }
 
     /* Attach elements to the beginning or end of an input */
@@ -470,6 +477,13 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
     select {
       @include form-select;
       height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
+
+      @for $i from 2 through 10 {
+          &[size="#{$i}"] {
+              height: ($input-font-size * $i + (rem-calc(19) - $input-font-size)*($i - 1) + ($form-spacing * 1.5) - rem-calc(1));
+          }
+      }
+          
     }
 
     /* Adjust margin for form elements below */
@@ -478,6 +492,8 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
     input[type="radio"],
     select {
       margin: 0 0 $form-spacing 0;
+      top: 2px;
+      position: relative;
     }
 
     input[type="checkbox"] + label,
@@ -566,5 +582,11 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
       margin-bottom: 0;
     }
     label.error { @include form-label-error-color; }
+
+    .hint {
+        color: scale-color($form-label-font-color, $lightness: 45%);
+        font-size: 85%;
+        margin: -$form-spacing/2 0 $form-spacing 0;
+    }
   }
 }

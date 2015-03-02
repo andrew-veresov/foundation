@@ -1,45 +1,122 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 // Foundation by ZURB
 // foundation.zurb.com
 // Licensed under MIT Open Source
 
 // Make sure the charset is set appropriately
 
+$include-html-global-classes: true;
+$include-meta-classes: false;
 // Behold, here are all the Foundation components.
   @import "foundation/components/grid";
-  @import "foundation/components/accordion";
-  @import "foundation/components/alert-boxes";
-  @import "foundation/components/block-grid";
-  @import "foundation/components/breadcrumbs";
-  @import "foundation/components/button-groups";
+  //@import "foundation/components/accordion";
+  //@import "foundation/components/alert-boxes";
+  //@import "foundation/components/block-grid";
+  //@import "foundation/components/breadcrumbs";
+  //@import "foundation/components/button-groups";
   @import "foundation/components/buttons";
-  @import "foundation/components/clearing";
-  @import "foundation/components/dropdown";
+  //@import "foundation/components/clearing";
+  @import "foundation/components/dropdown"; 
   @import "foundation/components/dropdown-buttons";
-  @import "foundation/components/flex-video";
-  @import "foundation/components/forms";
-  @import "foundation/components/icon-bar";
-  @import "foundation/components/inline-lists";
-  @import "foundation/components/joyride";
-  @import "foundation/components/keystrokes";
+  //@import "foundation/components/flex-video";
+  //@import "foundation/components/forms";
+  //@import "foundation/components/icon-bar";
+  //@import "foundation/components/inline-lists";
+  //@import "foundation/components/joyride";
+  //@import "foundation/components/keystrokes";
   @import "foundation/components/labels";
-  @import "foundation/components/magellan";
-  @import "foundation/components/orbit";
-  @import "foundation/components/pagination";
-  @import "foundation/components/panels";
-  @import "foundation/components/pricing-tables";
-  @import "foundation/components/progress-bars";
+  //@import "foundation/components/magellan";
+  //@import "foundation/components/orbit";
+  //@import "foundation/components/pagination";
+  @import "foundation/components/panels"; 
+  //@import "foundation/components/pricing-tables";
+  //@import "foundation/components/progress-bars";
   @import "foundation/components/range-slider";
-  @import "foundation/components/reveal";
-  @import "foundation/components/side-nav";
-  @import "foundation/components/split-buttons";
-  @import "foundation/components/sub-nav";
+  //@import "foundation/components/reveal";
+  //@import "foundation/components/side-nav";
+  //@import "foundation/components/split-buttons";
+  //@import "foundation/components/sub-nav";
   @import "foundation/components/switches";
-  @import "foundation/components/tables";
-  @import "foundation/components/tabs";
-  @import "foundation/components/thumbs";
-  @import "foundation/components/tooltips";
-  @import "foundation/components/top-bar";
+  //@import "foundation/components/tables";
+  //@import "foundation/components/tabs";
+  //@import "foundation/components/thumbs";
+  //@import "foundation/components/tooltips";
+  //@import "foundation/components/top-bar";
   @import "foundation/components/type";
   @import "foundation/components/offcanvas";
   @import "foundation/components/visibility";
+
+//carwash settings
+.switch.nowAvailable {
+    @include switch-size(1.25rem);
+    @include switch-style(white, $success-color, false, true, red);
+
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 16px;
+    margin-top: -2px;
+    
+    $padding: 1rem;
+
+    label {
+        margin-bottom: 0;
+    }
+    span {
+        color: white;
+        display: block;
+        position: absolute;
+        left: 1.4rem;
+        top: 0.05rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    $checked-width: 3.75rem;
+    input + label {
+        width: $checked-width;
+    }
+    input:checked + label:after {
+        left: $checked-width - $padding;
+    }
+    input:checked ~ span {
+        left: 0.5rem;
+        top: 0.1rem;
+    }
+}
+
+.switch.nowBusy {
+    @include switch-size(1.25rem);
+    @include switch-style(white, red, false, true, $success-color);
+
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 16px;
+    margin-top: -2px;
+    
+    $padding: 1rem;
+
+    label {
+        margin-bottom: 0;
+    }
+    span {
+        color: white;
+        display: block;
+        position: absolute;
+        left: 1.4rem;
+        top: 0.05rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    $checked-width: 3.75rem;
+    input + label {
+        width: $checked-width;
+    }
+    input:checked + label:after {
+        left: $checked-width - $padding;
+    }
+    input:checked ~ span {
+        left: 0.5rem;
+        top: 0.1rem;
+    }
+}

@@ -109,7 +109,7 @@ $menu-slide: "transform 500ms ease" !default;
   position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
-  background: $off-canvas-bg;
+  background: white;
   z-index: 1001;
   box-sizing: content-box;
   transition: transform 500ms ease 0s;
@@ -133,7 +133,7 @@ $menu-slide: "transform 500ms ease" !default;
   @include wrap-base;
   overflow: hidden;
   &.move-right,
-  &.move-left { min-height: 100%; -webkit-overflow-scrolling: touch; }
+  &.move-left { -webkit-overflow-scrolling: touch; }
 }
 
 // INNER WRAP
@@ -200,10 +200,10 @@ $menu-slide: "transform 500ms ease" !default;
   text-align: center;
   height: $tabbar-height;
   top: 0;
-  @media #{$medium-up} {
+  /*@media #{$medium-up} {
     &.left { text-align: left; }
     &.right { text-align: right; }
-  }
+  }*/
 
   // still need to make these non-presentational
   &.left {
@@ -274,11 +274,11 @@ $menu-slide: "transform 500ms ease" !default;
     z-index: 1002;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 
-    @media #{$medium-up} {
+    /*@media #{$medium-up} {
       &:hover {
         background: $off-canvas-overlay-background-hover;
       }
-    }
+    }*/
 }
 
 //
@@ -286,108 +286,160 @@ $menu-slide: "transform 500ms ease" !default;
 //
 @include exports("offcanvas") {
   @if $include-html-off-canvas-classes {
+     
+     @media only screen and (max-width: 640px) { //veresov for moy.am
 
-    .off-canvas-wrap { @include off-canvas-wrap; }
-    .inner-wrap { @include inner-wrap; }
+        .off-canvas-wrap { @include off-canvas-wrap; }
+        .inner-wrap { @include inner-wrap; }
 
-    .tab-bar { @include tab-bar-base; }
+        .tab-bar { @include tab-bar-base; }
 
-    .left-small { @include tabbar-small-section($position: left); }
-    .right-small { @include tabbar-small-section($position: right); }
+        .left-small { @include tabbar-small-section($position: left); }
+        .right-small { @include tabbar-small-section($position: right); }
 
-    .tab-bar-section { @include tab-bar-section; }
+        .tab-bar-section { @include tab-bar-section; }
 
-    // MENU BUTTON
-    // This is a little bonus. You don't need it for off canvas to work. Mixins to be written in the future.
-    .tab-bar .menu-icon {
-      text-indent: $tabbar-menu-icon-text-indent;
-      width: $tabbar-menu-icon-width;
-      height: $tabbar-menu-icon-height;
-      display: block;
-      padding: $tabbar-menu-icon-padding;
-      color: $tabbar-menu-icon-color;
-      position: relative;
-      transform: translate3d(0,0,0);
+        // MENU BUTTON
+        // This is a little bonus. You don't need it for off canvas to work. Mixins to be written in the future.
+        .tab-bar .menu-icon {
+          text-indent: $tabbar-menu-icon-text-indent;
+          width: $tabbar-menu-icon-width;
+          height: $tabbar-menu-icon-height;
+          display: block;
+          padding: $tabbar-menu-icon-padding;
+          color: $tabbar-menu-icon-color;
+          position: relative;
+          transform: translate3d(0,0,0);
 
-      // @include for the hamburger menu-icon
-      //
-      // Arguments as follows: ($width, $left, $top, $thickness, $gap, $color, $hover-color)
-      // $width - Width of hamburger icon in rem Default: $tabbar-hamburger-icon-width.
-      // $left - If false, icon will be centered horizontally || explicitly set value in rem Default: $tabbar-hamburger-icon-left= False
-      // $top - If false, icon will be centered vertically || explicitly set value in rem Default: = False
-      // $thickness - thickness of lines in hamburger icon, set value in px Default: $tabbar-hamburger-icon-thickness = 1px
-      // $gap - spacing between the lines in hamburger icon, set value in px Default: $tabbar-hamburger-icon-gap = 6px
-      // $color - icon color Default: $tabbar-menu-icon-color
-      // $hover-color - icon color when hovered Default: $tabbar-menu-icon-hover
-      // $offcanvas - Set to true
-      @include hamburger($tabbar-hamburger-icon-width, $tabbar-hamburger-icon-left, $tabbar-hamburger-icon-top, $tabbar-hamburger-icon-thickness, $tabbar-hamburger-icon-gap, $tabbar-menu-icon-color, $tabbar-menu-icon-hover, true)
+          // @include for the hamburger menu-icon
+          //
+          // Arguments as follows: ($width, $left, $top, $thickness, $gap, $color, $hover-color)
+          // $width - Width of hamburger icon in rem Default: $tabbar-hamburger-icon-width.
+          // $left - If false, icon will be centered horizontally || explicitly set value in rem Default: $tabbar-hamburger-icon-left= False
+          // $top - If false, icon will be centered vertically || explicitly set value in rem Default: = False
+          // $thickness - thickness of lines in hamburger icon, set value in px Default: $tabbar-hamburger-icon-thickness = 1px
+          // $gap - spacing between the lines in hamburger icon, set value in px Default: $tabbar-hamburger-icon-gap = 6px
+          // $color - icon color Default: $tabbar-menu-icon-color
+          // $hover-color - icon color when hovered Default: $tabbar-menu-icon-hover
+          // $offcanvas - Set to true
+          @include hamburger($tabbar-hamburger-icon-width, $tabbar-hamburger-icon-left, $tabbar-hamburger-icon-top, $tabbar-hamburger-icon-thickness, $tabbar-hamburger-icon-gap, $tabbar-menu-icon-color, $tabbar-menu-icon-hover, true)
+        }
+
+        .left-off-canvas-menu { @include off-canvas-menu($position: left); }
+        .right-off-canvas-menu { @include off-canvas-menu($position: right); }
+
+        ul.off-canvas-list { @include off-canvas-list; }
+
+
+        // ANIMATION CLASSES
+        // These classes are added with JS and trigger the actual animation.
+        .move-right {
+          > .inner-wrap {
+            @include translate3d($off-canvas-width,0,0);
+          }
+          .exit-off-canvas { @include back-link;}
+        }
+
+        .move-left {
+          > .inner-wrap {
+            @include translate3d(-($off-canvas-width),0,0);
+
+          }
+          .exit-off-canvas { @include back-link; }
+        }
+        .offcanvas-overlap {
+          .left-off-canvas-menu, .right-off-canvas-menu {
+            -ms-transform: none;
+            -webkit-transform: none;
+            -moz-transform: none;
+            -o-transform: none;
+            transform: none;
+            z-index: 1003;
+          }
+          .exit-off-canvas { @include back-link; }
+        }
+        .offcanvas-overlap-left {
+          .right-off-canvas-menu {
+            -ms-transform: none;
+            -webkit-transform: none;
+            -moz-transform: none;
+            -o-transform: none;
+            transform: none;
+            z-index: 1003;
+          }
+          .exit-off-canvas { @include back-link; }
+        }
+        .offcanvas-overlap-right {
+          .left-off-canvas-menu {
+            -ms-transform: none;
+            -webkit-transform: none;
+            -moz-transform: none;
+            -o-transform: none;
+            transform: none;
+            z-index: 1003;
+          }
+          .exit-off-canvas { @include back-link; }
+        }
+
+        // Older browsers
+        .no-csstransforms {
+          .left-off-canvas-menu { left: -($off-canvas-width); }
+          .right-off-canvas-menu { right: -($off-canvas-width); }
+
+          .move-left > .inner-wrap { right: $off-canvas-width; }
+          .move-right > .inner-wrap { left: $off-canvas-width; }
+        }
+    } // veresov for moy.am
+
+      
+
+    /* Additional rules for moy.am */
+    .right-off-canvas-toggle {
+        display: none;
+    }
+    @media only screen and (max-width: 640px) {
+        .right-off-canvas-toggle {
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: 16px;
+            height: 64px;
+            line-height: 58px;
+            font-size: 22px;
+            margin-top: -32px;
+            background-color: #f7f7f7;
+            border-top: 1px solid #333333;
+            border-left: 1px solid #333333;
+            border-bottom: 1px solid #333333;
+            text-decoration: none;
+            border-radius: 32px 0 0 32px;
+        }
     }
 
-    .left-off-canvas-menu { @include off-canvas-menu($position: left); }
-    .right-off-canvas-menu { @include off-canvas-menu($position: right); }
-
-    ul.off-canvas-list { @include off-canvas-list; }
-
-
-    // ANIMATION CLASSES
-    // These classes are added with JS and trigger the actual animation.
-    .move-right {
-      > .inner-wrap {
-        @include translate3d($off-canvas-width,0,0);
-      }
-      .exit-off-canvas { @include back-link;}
+    @media only screen and (min-width: 40.063em) {
+        .tab-bar-section {
+            text-align: left;
+        }
     }
 
-    .move-left {
-      > .inner-wrap {
-        @include translate3d(-($off-canvas-width),0,0);
-
-      }
-      .exit-off-canvas { @include back-link; }
-    }
-    .offcanvas-overlap {
-      .left-off-canvas-menu, .right-off-canvas-menu {
-        -ms-transform: none;
-        -webkit-transform: none;
-        -moz-transform: none;
-        -o-transform: none;
-        transform: none;
-        z-index: 1003;
-      }
-      .exit-off-canvas { @include back-link; }
-    }
-    .offcanvas-overlap-left {
-      .right-off-canvas-menu {
-        -ms-transform: none;
-        -webkit-transform: none;
-        -moz-transform: none;
-        -o-transform: none;
-        transform: none;
-        z-index: 1003;
-      }
-      .exit-off-canvas { @include back-link; }
-    }
-    .offcanvas-overlap-right {
-      .left-off-canvas-menu {
-        -ms-transform: none;
-        -webkit-transform: none;
-        -moz-transform: none;
-        -o-transform: none;
-        transform: none;
-        z-index: 1003;
-      }
-      .exit-off-canvas { @include back-link; }
+    @media only screen and (min-width: 40.063em) {
+        .move-right .exit-off-canvas:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
     }
 
-    // Older browsers
-    .no-csstransforms {
-      .left-off-canvas-menu { left: -($off-canvas-width); }
-      .right-off-canvas-menu { right: -($off-canvas-width); }
-
-      .move-left > .inner-wrap { right: $off-canvas-width; }
-      .move-right > .inner-wrap { left: $off-canvas-width; }
+    @media only screen and (min-width: 40.063em) {
+        .move-left .exit-off-canvas:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
     }
 
+    @media only screen and (min-width: 40.063em) {
+        .offcanvas-overlap .exit-off-canvas:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    }
   }
 }
 

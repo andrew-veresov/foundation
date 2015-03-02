@@ -10,10 +10,10 @@
 $include-html-button-classes: $include-html-classes !default;
 
 // We use these to build padding for buttons.
-$button-tny: rem-calc(10) !default;
-$button-sml: rem-calc(14) !default;
-$button-med: rem-calc(16) !default;
-$button-lrg: rem-calc(18) !default;
+$button-tny: rem-calc(4) !default;
+$button-sml: rem-calc(6) !default;
+$button-med: rem-calc(8) !default;
+$button-lrg: rem-calc(10) !default;
 
 // We use this to control the display property.
 $button-display: inline-block !default;
@@ -22,11 +22,11 @@ $button-margin-bottom: rem-calc(20) !default;
 // We use these to control button text styles.
 $button-font-family: $body-font-family !default;
 $button-font-color: $white !default;
-$button-font-color-alt: $oil !default;
-$button-font-tny: rem-calc(11) !default;
-$button-font-sml: rem-calc(13) !default;
-$button-font-med: rem-calc(16) !default;
-$button-font-lrg: rem-calc(20) !default;
+$button-font-color-alt: $black !default;
+$button-font-tny: rem-calc(13) !default;
+$button-font-sml: rem-calc(15) !default;
+$button-font-med: rem-calc(17) !default;
+$button-font-lrg: rem-calc(21) !default;
 $button-font-weight: $font-weight-normal !default;
 $button-font-align: center !default;
 
@@ -34,11 +34,11 @@ $button-font-align: center !default;
 $button-function-factor: -20% !default;
 
 // We use these to control button border styles.
-$button-border-width: 0 !default;
+$button-border-width: 2px !default;
 $button-border-style: solid !default;
 $button-bg-color: $primary-color !default;
-$button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor) !default;
-$button-border-color: $button-bg-hover !default;
+$button-bg-hover: scale-color($primary-color, $lightness: $button-function-factor) !default;
+$button-border-color: scale-color($primary-color, $lightness: $button-function-factor) !default;
 $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor) !default;
 $secondary-button-border-color: $secondary-button-bg-hover !default;
 $success-button-bg-hover: scale-color($success-color, $lightness: $button-function-factor) !default;
@@ -213,7 +213,7 @@ $button-disabled-cursor: $cursor-default-value !default;
   @if $include-html-button-classes {
 
     // Default styles applied outside of media query
-    button, .button {
+    button, .button, a.button {
       @include button-base;
       @include button-size;
       @include button-style;
@@ -250,7 +250,7 @@ $button-disabled-cursor: $cursor-default-value !default;
     button::-moz-focus-inner {border:0; padding:0;}
 
     @media #{$medium-up} {
-      button, .button {
+      button, .button, a.button {
         @include button-base($style:false, $display:inline-block);
         @include button-size($padding:false, $full-width:false);
       }

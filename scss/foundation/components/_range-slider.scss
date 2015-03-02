@@ -38,7 +38,7 @@ $range-slider-handle-position-top: rem-calc(-5) !default;
 $range-slider-handle-bg-color: $primary-color !default;
 $range-slider-handle-border-width: 1px !default;
 $range-slider-handle-border-style: solid !default;
-$range-slider-handle-border-color: none !default;
+$range-slider-handle-border-color: transparent !default;
 $range-slider-handle-radius: $global-radius !default;
 $range-slider-handle-round: $global-rounded !default;
 $range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%) !default;

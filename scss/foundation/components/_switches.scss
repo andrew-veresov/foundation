@@ -12,7 +12,7 @@
 //
 // @variables
 //
-
+ 
 $include-html-form-classes: $include-html-classes !default;
 
 // Controlling background color for the switch container
@@ -76,7 +76,10 @@ $switch-active-color: $primary-color !default;
     left: 10px;
     padding:0;
 
-    & + label { margin-left: 0; margin-right: 0; }
+    & + label { 
+        margin-left: 0; 
+        margin-right: 0; 
+    }
   }
 
   // The paddle for the switch is created from an after psuedoclass
@@ -147,13 +150,15 @@ $switch-active-color: $primary-color !default;
   $paddle-bg:$switch-paddle-bg,
   $active-color:$switch-active-color,
   $radius:false,
-  $base-style:true) {
+  $base-style:true,
+  $switch-color: $switch-bg
+) {
 
   @if $base-style {
 
     label {
       color: transparent;
-      background: $switch-bg;
+      background: $switch-color;
     }
 
     label:after {
