@@ -128,7 +128,7 @@
           tabs = tab.closest('[' + this.attr_name() + ']'),
           tab_link = tab.find('a'),
           anchor = tab.children('a').first(),
-          target_hash = '#' + anchor.attr('href').split('#')[1],
+          target_hash = anchor.attr('href') != undefined ? '#' + anchor.attr('href').split('#')[1] : undefined,
           target = S(target_hash),
           siblings = tab.siblings(),
           settings = tabs.data(this.attr_name(true) + '-init'),
@@ -152,7 +152,7 @@
                 $target = $next;
                 break;
               default:
-                $target = false
+                  $target = false;
                   break;
             }
 
@@ -195,6 +195,14 @@
         target = S(target_hash);
       }
 
+      if (target_hash == undefined) {
+          var sss = S(tab).data(this.data_attr('tab-content'));
+          if (sss.length > 0) {
+              target_hash = '#' + sss.split('#')[1];
+              target = S(target_hash);
+          }
+      }
+
       if (settings.deep_linking) {
 
         if (settings.scroll_to_content) {
@@ -223,7 +231,7 @@
       // Clean up multiple attr instances to done once
       tab.addClass(settings.active_class).triggerHandler('opened');
       tab_link.attr({'aria-selected' : 'true',  tabindex : 0});
-      siblings.removeClass(settings.active_class)
+      siblings.removeClass(settings.active_class);
       siblings.find('a').attr({'aria-selected' : 'false',  tabindex : -1});
       target.siblings().removeClass(settings.active_class).attr({'aria-hidden' : 'true',  tabindex : -1});
       target.addClass(settings.active_class).attr('aria-hidden', 'false').removeAttr('tabindex');
