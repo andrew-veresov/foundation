@@ -3,6 +3,8 @@
 // Licensed under MIT Open Source
 // toolbar styles
 
+@import "global";
+
 .toolbar {
 	background: $oil;
 	width: 100%;
@@ -42,7 +44,7 @@
 		float: left;
 
 		&:hover {
-			background: rgba($white, 0.1);
+			background: rgba($white, .1);
 		}
 	}
 }

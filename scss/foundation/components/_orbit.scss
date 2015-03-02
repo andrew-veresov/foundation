@@ -10,7 +10,7 @@ $include-html-orbit-classes: $include-html-classes !default;
 
 // We use these to control the caption styles
 $orbit-container-bg: none !default;
-$orbit-caption-bg: rgba(51,51,51, 0.8) !default;
+$orbit-caption-bg: rgba(51,51,51, .8) !default;
 $orbit-caption-font-color: $white !default;
 $orbit-caption-font-size: rem-calc(14) !default;
 $orbit-caption-position: "bottom" !default; // Supported values: "bottom", "under"
@@ -51,20 +51,30 @@ $orbit-timer-hide-for-small: true !default;
   @if $include-html-orbit-classes {
 
     @-webkit-keyframes rotate {
-      from { -webkit-transform: rotate(0deg); }
-      to { -webkit-transform: rotate(360deg); }
+      from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      to {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+      }
     }
-    @-moz-keyframes rotate {
-      from { -moz-transform: rotate(0deg); }
-      to { -moz-transform: rotate(360deg); }
-    }
-    @-o-keyframes rotate {
-      from { -o-transform: rotate(0deg); }
-      to { -o-transform: rotate(360deg); }
-    }
+
+
     @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      from {
+          -webkit-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+      }
+      to {
+          -webkit-transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+      }
     }
 
     /* Orbit Graceful Loading */
@@ -131,10 +141,14 @@ $orbit-timer-hide-for-small: true !default;
 
         // Prevents images (and captions) from disappearing after first rotation on Chrome for Android
         -webkit-transform: translateZ(0);
+           -moz-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+             -o-transform: translateZ(0);
+                transform: translateZ(0);
 
         img { display: block; max-width: 100%; }
 
-        &>* {
+        > * {
           position: absolute;
           top: 0;
           width: 100%;
@@ -147,10 +161,10 @@ $orbit-timer-hide-for-small: true !default;
 
           &:first-child {
             @if $text-direction == rtl {
-            margin-right: 0;
+              margin-right: 0;
             }
             @else {
-            margin-left: 0;
+              margin-left: 0;
             }
           }
 
