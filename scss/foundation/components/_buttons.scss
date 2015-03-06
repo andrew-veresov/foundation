@@ -210,7 +210,7 @@ $button-disabled-cursor: $cursor-default-value !default;
   @if $include-html-button-classes {
 
     // Default styles applied outside of media query
-    button, .button, a.button {
+    button, .button, a.button, a.button:link {
       @include button-base;
       @include button-size;
       @include button-style;

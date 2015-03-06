@@ -10,7 +10,7 @@
 $include-html-grid-classes: $include-html-classes !default;
 $include-xl-html-grid-classes: false !default;
 
-$row-width: rem-calc(1000) !default;
+$row-width: rem-calc(1280) !default;
 $total-columns: 12 !default;
 
 $last-child-float: $opposite-direction !default;
@@ -221,6 +221,37 @@ $last-child-float: $opposite-direction !default;
 			}
 		}
 	}
+
+	.column {
+		&.#{$size}-collapse {
+			@include grid-column($collapse:true, $float:false);
+		}
+		&.#{$size}-uncollapse {
+			@include grid-column;
+		}
+	}
+
+	.columns {
+		&.#{$size}-collapse {
+			@include grid-column($collapse:true, $float:false);
+		}
+		&.#{$size}-uncollapse {
+			@include grid-column;
+		}
+	}
+
+    .stick-bottom-#{$size}-up {
+        height: auto;
+        overflow: hidden;
+        position: absolute;
+        bottom: 0;
+        left: $column-gutter/2;
+        right: $column-gutter/2;
+    }
+
+    .stretch-height-#{$size}-up {
+        height: 100%;
+    }
 }
 
 @include exports("grid") {

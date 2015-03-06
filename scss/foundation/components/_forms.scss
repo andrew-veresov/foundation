@@ -11,11 +11,11 @@
 $include-html-form-classes: $include-html-classes !default;
 
 // We use this to set the base for lots of form spacing and positioning styles
-$form-spacing: rem-calc(16) !default;
+$form-spacing: rem-calc(12) !default;
 
 // We use these to style the labels in different ways
 $form-label-pointer: pointer !default;
-$form-label-font-size: rem-calc(14) !default;
+$form-label-font-size: rem-calc(12) !default;
 $form-label-font-weight: $font-weight-normal !default;
 $form-label-line-height: 1.5 !default;
 $form-label-font-color: scale-color($black, $lightness: 50%) !default;
@@ -23,7 +23,7 @@ $form-label-small-transform: capitalize !default;
 $form-label-bottom-margin: 0 !default;
 $input-font-family: inherit !default;
 $input-font-color: rgba(0,0,0,0.75) !default;
-$input-font-size: rem-calc(14) !default;
+$input-font-size: rem-calc(12) !default;
 $input-bg-color: $white !default;
 $input-focus-bg-color: scale-color($white, $lightness: -2%) !default;
 $input-border-color: scale-color($white, $lightness: -20%) !default;
@@ -33,13 +33,8 @@ $input-border-width: 1px !default;
 $input-border-radius: $global-radius !default;
 $input-disabled-bg: $gainsboro !default;
 $input-disabled-cursor: $cursor-default-value !default;
-<<<<<<< HEAD
-$input-box-shadow: none !default;
-$input-include-glowing-effect: true !default;
-=======
 $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1) !default;
 $input-include-glowing-effect: false !default;
->>>>>>> de6672d64884debaa35f07a95994d6c23f464267
 
 // We use these to style the fieldset border and spacing.
 $fieldset-border-style: solid !default;
@@ -68,7 +63,7 @@ $input-number-spinners: true !default;
 // We use these to style the error states for inputs and labels
 $input-error-message-padding: rem-calc(6 9 9) !default;
 $input-error-message-top: -1px !default;
-$input-error-message-font-size: rem-calc(12) !default;
+$input-error-message-font-size: rem-calc(10) !default;
 $input-error-message-font-weight: $font-weight-normal !default;
 $input-error-message-font-style: italic !default;
 $input-error-message-font-color: $white !default;
@@ -181,7 +176,8 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
     text-align: right;
   }
   @else if $alignment == inline {
-    margin: 0 0 $form-spacing 0;
+    //margin: 0 0 $form-spacing 0;
+    margin: 0;
     padding: $form-spacing / 2 + rem-calc($input-border-width) 0;
   }
 }
@@ -493,7 +489,6 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
     select {
       @include form-select;
       height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));
-<<<<<<< HEAD
 
       @for $i from 2 through 10 {
           &[size="#{$i}"] {
@@ -501,11 +496,9 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
           }
       }
           
-=======
       &[multiple] {
         height: auto;
       }
->>>>>>> de6672d64884debaa35f07a95994d6c23f464267
     }
 
     /* Adjust margin for form elements below */
@@ -607,8 +600,20 @@ $select-hover-bg-color: scale-color($select-bg-color, $lightness: -3%) !default;
 
     .hint {
         color: scale-color($form-label-font-color, $lightness: 45%);
-        font-size: 85%;
+        font-size: 75%;
+        font-family: 'Webly SemiLight';
         margin: -$form-spacing/2 0 $form-spacing 0;
+    }
+    .keep-on-line, input[type=text].keep-on-line {
+        display: inline-block;
+        width: auto;
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+    .no-wrap {
+        white-space: nowrap;
     }
   }
 }
+ 
