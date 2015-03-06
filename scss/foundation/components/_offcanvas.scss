@@ -2,8 +2,8 @@
 // foundation.zurb.com
 // Licensed under MIT Open Source
 
-@import "global";
-@import "type";
+@import 'global';
+@import 'type';
 
 // Off Canvas Tab Bar Variables
 $include-html-off-canvas-classes: $include-html-classes !default;
@@ -110,7 +110,7 @@ $menu-slide: "transform 500ms ease" !default;
   position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
-  background: white;
+  background: $off-canvas-bg;
   z-index: 1001;
   box-sizing: content-box;
   transition: transform 500ms ease 0s;
@@ -134,7 +134,7 @@ $menu-slide: "transform 500ms ease" !default;
   @include wrap-base;
   overflow: hidden;
   &.move-right,
-  &.move-left { -webkit-overflow-scrolling: touch; }
+  &.move-left { min-height: 100%; -webkit-overflow-scrolling: touch; }
 }
 
 // INNER WRAP
@@ -201,16 +201,9 @@ $menu-slide: "transform 500ms ease" !default;
   height: $tabbar-height;
   text-align: center;
   top: 0;
-<<<<<<< HEAD
-  /*@media #{$medium-up} {
-    &.left { text-align: left; }
-    &.right { text-align: right; }
-  }*/
-=======
     &.left { text-align: left; }
     &.right { text-align: right; }
 
->>>>>>> de6672d64884debaa35f07a95994d6c23f464267
 
   // still need to make these non-presentational
   &.left {
@@ -284,11 +277,11 @@ $menu-slide: "transform 500ms ease" !default;
     z-index: 1002;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 
-    /*@media #{$medium-up} {
+    @media #{$medium-up} {
       &:hover {
         background: $off-canvas-overlay-background-hover;
       }
-    }*/
+    }
 }
 
 //
@@ -388,7 +381,6 @@ $menu-slide: "transform 500ms ease" !default;
 @include exports("offcanvas") {
   @if $include-html-off-canvas-classes {
      
-     @media only screen and (max-width: 640px) { //veresov for moy.am
 
         .off-canvas-wrap { @include off-canvas-wrap; }
         .inner-wrap { @include inner-wrap; }
@@ -490,123 +482,20 @@ $menu-slide: "transform 500ms ease" !default;
           .move-left > .inner-wrap { right: $off-canvas-width; }
           .move-right > .inner-wrap { left: $off-canvas-width; }
         }
-    } // veresov for moy.am
 
       
 
-    /* Additional rules for moy.am */
-    .right-off-canvas-toggle {
-        display: none;
-    }
-    @media only screen and (max-width: 640px) {
-        .right-off-canvas-toggle {
-            display: block;
-            position: absolute;
-            right: 0;
-            top: 50%;
-            width: 16px;
-            height: 64px;
-            line-height: 58px;
-            font-size: 22px;
-            margin-top: -32px;
-            background-color: #f7f7f7;
-            border-top: 1px solid #333333;
-            border-left: 1px solid #333333;
-            border-bottom: 1px solid #333333;
-            text-decoration: none;
-            border-radius: 32px 0 0 32px;
-        }
-    }
 
-    @media only screen and (min-width: 40.063em) {
-        .tab-bar-section {
-            text-align: left;
-        }
-    }
 
-    @media only screen and (min-width: 40.063em) {
-        .move-right .exit-off-canvas:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-    }
 
-    @media only screen and (min-width: 40.063em) {
-        .move-left .exit-off-canvas:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-    }
-<<<<<<< HEAD
 
-    @media only screen and (min-width: 40.063em) {
-        .offcanvas-overlap .exit-off-canvas:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-    }
-  }
-}
 
-//
-// Off-Canvas Submenu Classes
-//
-@mixin off-canvas-submenu($position) {
-  @include kill-flicker;
-  * { @include kill-flicker; }
-  width: $off-canvas-width;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-  margin: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background: $off-canvas-bg;
-  z-index: 1002;
-  box-sizing: content-box;
-  -webkit-overflow-scrolling: touch;
-  @if $position == left {
-    @include translate3d(-100%,0,0);
-    left: 0;
-  }
-  @if $position == right {
-    @include translate3d(100%,0,0);
-    right: 0;
-  }
-  -webkit-transition: -webkit-#{$menu-slide};
-  -moz-transition: -moz-#{$menu-slide};
-  -ms-transition: -ms-#{$menu-slide};
-  -o-transition: -o-#{$menu-slide};
-  transition: #{$menu-slide};
 
-  //back button style like label
-  .back > a {
-    padding: $off-canvas-label-padding;
-    color: $off-canvas-label-color;
-    text-transform: $off-canvas-label-text-transform;
-    font-weight: $off-canvas-label-font-weight;
-    background: $off-canvas-back-bg;
-    border-top: $off-canvas-back-border-top;
-    border-bottom: $off-canvas-back-border-bottom;
-    &:hover {
-    	background: $off-canvas-back-hover-bg;
-    	border-top: $off-canvas-back-hover-border-top;
-    	border-bottom: $off-canvas-back-hover-border-bottom;
-    }
-    margin: $off-canvas-label-margin;
-    @if $position == right {
-      @if $text-direction == rtl {
-        &:before {
-          @include icon-double-arrows($position: left);
-        }
-      } @else {
-        &:after {
-          @include icon-double-arrows($position: right);
-        }
-=======
-    
+
     .left-submenu {
       @include off-canvas-submenu($position: left);
       &.move-right, &.offcanvas-overlap-right, &.offcanvas-overlap {
         @include translate3d(0%,0,0);
->>>>>>> de6672d64884debaa35f07a95994d6c23f464267
       }
     }
 
